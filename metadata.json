@@ -1,6 +1,0 @@
-{
-  "name": "Performance Analyst FC 26",
-  "description": "Gerador inteligente de fichas biográficas detalhadas para novos jogadores fictícios de futebol, com busca de dados em tempo real para o ano de 2026.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}
