@@ -1,0 +1,67 @@
+{
+  "collections": {
+    "careers": {
+      "schema": {
+        "id": "string",
+        "userId": "string",
+        "userEmail": "string",
+        "trainerUsername": "string",
+        "currentClub": "string",
+        "isPublic": "boolean",
+        "profile": {
+          "nome_jogador": "string",
+          "nacionalidade": "string",
+          "posicao": "string",
+          "clube_inicial": "string",
+          "perfil_completo_20_perguntas": "map",
+          "personalidade_tipo": "string"
+        },
+        "matches": "array",
+        "history": "array",
+        "championships": "array",
+        "createdAt": "string",
+        "updatedAt": "string",
+        "isBoosted": "boolean"
+      }
+    },
+    "users": {
+      "schema": {
+        "userId": "string",
+        "username": "string",
+        "email": "string",
+        "hasSetupUsername": "boolean",
+        "isPro": "boolean",
+        "proExpiresAt": "string",
+        "aiCredits": "number",
+        "aiGenerationsCount": "number",
+        "extraSlots": "number",
+        "isBlocked": "boolean",
+        "boostedUntil": "string",
+        "isAdmin": "boolean",
+        "updatedAt": "string"
+      }
+    },
+    "subscriptions": {
+      "schema": {
+        "id": "string",
+        "userId": "string",
+        "userEmail": "string",
+        "status": "string",
+        "amount": "number",
+        "paymentMethod": "string",
+        "type": "string",
+        "createdAt": "string",
+        "expiresAt": "string"
+      }
+    },
+    "system_config": {
+      "schema": {
+        "proPrice": "number",
+        "freeAiLimit": "number",
+        "announcementBanner": "string",
+        "showBanner": "boolean",
+        "updatedAt": "string"
+      }
+    }
+  }
+}
