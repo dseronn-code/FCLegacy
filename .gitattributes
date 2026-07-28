@@ -1,0 +1,7 @@
+# Tratamento de arquivos binários para evitar corrupção pelo Git
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.webp binary
