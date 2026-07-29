@@ -1,0 +1,58 @@
+rules_version = '2';
+ 
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper function to check if the authenticated user is an admin
+    function isAdmin() {
+      return request.auth != null && 
+        exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true;
+    }
+
+    match /careers/{careerId} {
+      // Anyone can read if the career is marked public
+      // Otherwise, only the creator or admin can read
+      allow read: if resource == null 
+                  || resource.data.isPublic == true 
+                  || (request.auth != null && (request.auth.uid == resource.data.userId || isAdmin()));
+ 
+      // Authenticated owner can create, update, or delete; admin can delete or edit as well
+      allow create: if request.auth != null && (request.auth.uid == request.resource.data.userId || isAdmin());
+      allow update: if request.auth != null && (request.auth.uid == resource.data.userId || isAdmin());
+      allow delete: if request.auth != null && (request.auth.uid == resource.data.userId || isAdmin());
+    }
+ 
+    match /users/{userId} {
+      // Allow read and write for users (authenticated or server session)
+      allow read: if true;
+      allow create, update: if true;
+      allow delete: if isAdmin();
+    }
+
+    match /subscriptions/{subId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    match /plans/{planId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    match /system_config/{configId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    match /reactivations/{tokenId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    match /password_resets/{resetId} {
+      allow read: if true;
+      allow write: if true;
+    }
+  }
+}
